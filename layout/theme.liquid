@@ -17,6 +17,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <script src="https://unpkg.com/@optimizely/optimizely-sdk/dist/optimizely.browser.umd.min.js"></script>
   {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
+  {{ 'custom.js' | asset_url | script_tag }}
 
   {% if settings.favicon_enable %}
   <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
@@ -110,6 +111,11 @@
         window.optimizelyClient.onReady().then(() => {
           var loadedSdkKey = window.optimizelyClient.getOptimizelyConfig().sdkKey;
           console.log(`Optimizely Full Stack client with sdkKey ${loadedSdkKey} is initialized`);
+          if (window.fullStackOnReady) {
+            window.fullStackOnReady();
+          } else {
+            console.error("window.fullStackOnReady should be called but assets/custom.js hasn't loaded yet");
+          }
         })
       }
 
