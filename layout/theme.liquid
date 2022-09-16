@@ -86,7 +86,7 @@
           setCookie(SDKKEY_COOKIE_NAME, sdkKeyParam, COOKIE_EXPIRATION);
         }
 
-        var sdkKey = getCookie(SDKKEY_COOKIE_NAME, DEFAULT_SDKKEY);
+        var sdkKey = getCookie(SDKKEY_COOKIE_NAME) || DEFAULT_SDKKEY;
         window.optimizelyClient = optimizelySdk.createInstance({
           sdkKey: sdkKey
 	      });
