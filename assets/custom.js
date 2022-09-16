@@ -30,7 +30,7 @@ window.fullStackOnReady = () => {
     if (dialogDecision['enabled']) {
         let modal = new FancyModal({
             modalType: dialogDecision.variables['modalType'],
-            overlay: dialogDecision.variables['dark'],
+            overlay: dialogDecision.variables['overlay'],
             className: dialogDecision.variables['className'],
             imageSrc: dialogDecision.variables['imageSrc'],
             okBtnTxt: dialogDecision.variables['okBtnTxt'],
