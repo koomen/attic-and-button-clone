@@ -26,10 +26,10 @@ window.fullStackOnReady = () => {
     });*/
 
     let modal = new FancyModal({
-        modalType: 'info',
+        modalType: 'image',
         overlay: 'dark',
         className: 'fade-and-zoom',
-        content: 'Check out this modal dialog',
+        imageSrc: 'https://www.burgesspetcare.com/wp-content/uploads/2021/08/Hamster.jpg',
         okBtnTxt: 'Ok',
         koBtnTxt: 'Cancel'
     });
