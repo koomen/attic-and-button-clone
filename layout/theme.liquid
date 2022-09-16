@@ -76,6 +76,22 @@
 
         //Dynamically writing snippet
         document.write('<scr' + 'ipt src="' + snippetURL + '"></scr' + 'ipt>'); 
+
+        // Set log level to verbose
+        window['optimizely'] = window['optimizely'] || []; 
+        window['optimizely'].push({ type: 'log', level: 'info' });
+
+        window["optimizely"].push({
+          "type": "addListener",
+          "filter": {
+            "type": "lifecycle",
+            "name": "initialized"
+          },
+          "handler": function(event) {
+            var loadedProjectId = window["optimizely"].get("data").projectId;
+            console.log(`Optimizely Full Stack client with sdkKey ${loadedProjectId} is initialized`);
+          }
+        });
       }
 
       // Initialize Optimizely Full Stack
@@ -93,7 +109,7 @@
 
         window.optimizelyClient.onReady().then(() => {
           var loadedSdkKey = window.optimizelyClient.getOptimizelyConfig().sdkKey;
-          console.log(`Successfully initialized optimizely client with sdkKey ${loadedSdkKey}`);
+          console.log(`Optimizely Full Stack client with sdkKey ${loadedSdkKey} is initialized`);
         })
       }
 
