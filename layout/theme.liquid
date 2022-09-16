@@ -19,6 +19,13 @@
   {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
   {{ 'custom.js' | asset_url | script_tag }}
 
+  <!-- fancy-modal https://github.com/gutuJosh/fancy-modal -->
+  {{ 'fancy-modal.css' | asset_url | stylesheet_tag }}
+  {{ 'fancy-modal.js' | asset_url | script_tag }}
+
+  <!-- Custom code called when the full stack SDK is initialized -->
+  {{ 'custom.js' | asset_url | script_tag }} 
+
   {% if settings.favicon_enable %}
   <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
   {% endif %}

@@ -21,7 +21,17 @@ function waitForElm(selector) {
 }
 
 window.fullStackOnReady = () => {
-    waitForElm(".btn.hero__cta").then((elm) => {
+    /*waitForElm(".btn.hero__cta").then((elm) => {
         elm.style.backgroundColor = "red";
+    });*/
+
+    let modal = new FancyModal({
+        modalType: 'info',
+        overlay: 'dark',
+        className: 'fade-and-zoom',
+        content: 'Check out this modal dialog',
+        okBtnTxt: 'Ok',
+        koBtnTxt: 'Cancel'
     });
+    modal.open();
 }
