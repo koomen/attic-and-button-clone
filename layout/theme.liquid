@@ -91,13 +91,14 @@
           sdkKey: sdkKey
 	      });
 
-        window.optimizelyClient.onRead().then(() => {
+        window.optimizelyClient.onReady().then(() => {
           var loadedSdkKey = window.optimizelyClient.getOptimizelyConfig().sdkKey();
           console.log(`Successfully initialized optimizely client with sdkKey ${loadedSdkKey}`);
         })
       }
 
-
+      initOptimizelyWeb();
+      initOptimizelyFullStack();
 
     })();
   </script>
