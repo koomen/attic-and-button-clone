@@ -25,13 +25,20 @@ window.fullStackOnReady = () => {
         elm.style.backgroundColor = "red";
     });*/
 
-    let modal = new FancyModal({
-        modalType: 'image',
-        overlay: 'dark',
-        className: 'fade-and-zoom',
-        imageSrc: 'https://www.burgesspetcare.com/wp-content/uploads/2021/08/Hamster.jpg',
-        okBtnTxt: 'Ok',
-        koBtnTxt: 'Cancel'
-    });
-    modal.open();
+    const dialogDecision = window.userContext.decide('dummy_modal_dialog');
+
+    if (dialogDecision['enabled']) {
+        let modal = new FancyModal({
+            modalType: dialogDecision.variables['modalType'],
+            overlay: dialogDecision.variables['dark'],
+            className: dialogDecision.variables['className'],
+            imageSrc: dialogDecision.variables['imageSrc'],
+            okBtnTxt: dialogDecision.variables['okBtnTxt'],
+            koBtnTxt: dialogDecision.variables['koBtnTxt'],
+        });
+        modal.open();
+    }
+
+
+
 }

@@ -39,7 +39,10 @@
             DEFAULT_PROJECT = '22138931278',
             SDKKEY_PARAMETER = 'sdkkey',
             DEFAULT_SDKKEY = '3DHbmsE3z3y3Fb1qmexbA',
-            SDKKEY_COOKIE_NAME = 'optimizelySdkKey';
+            SDKKEY_COOKIE_NAME = 'optimizelySdkKey',
+            USERID_PARAMETER = 'userid',
+            USERID_COOKIE_NAME = 'optimizelyUserId',
+            DEFAULT_USERID = 'user123';
 
       
       //Helper to get cookie value
@@ -102,6 +105,20 @@
         });
       }
 
+      // Initialize Optimizely User Context
+      function initOptimizelyUserContext(optimizelyClient) {
+        var userIdParam = getParameterByName(USERID_PARAMETER);
+
+        if (userIdParam) {
+          setCookie(USERID_COOKIE_NAME, userIdParam, COOKIE_EXPIRATION);
+        }
+
+        var userId = getCookie(USERID_COOKIE_NAME) || DEFAULT_USERID;
+        var attrs = {};
+
+        window.userContext = optimizelyClient.createUserContext(userId, attrs);
+      }
+
       // Initialize Optimizely Full Stack
       function initOptimizelyFullStack() {
         var sdkKeyParam = getParameterByName(SDKKEY_PARAMETER);
@@ -118,6 +135,9 @@
         window.optimizelyClient.onReady().then(() => {
           var loadedSdkKey = window.optimizelyClient.getOptimizelyConfig().sdkKey;
           console.log(`Optimizely Full Stack client with sdkKey ${loadedSdkKey} is initialized`);
+
+          initOptimizelyUserContext(window.optimizelyClient);
+
           if (window.fullStackOnReady) {
             window.fullStackOnReady();
           } else {
